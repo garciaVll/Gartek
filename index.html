@@ -1,1 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GARTEK · Automação & Eletrotécnica Industrial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .font-mono, code, .terminal { font-family: 'JetBrains Mono', monospace; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        .glow-cyan { box-shadow: 0 0 24px rgba(34, 211, 238, 0.35); }
+        .glow-cyan-strong { box-shadow: 0 0 40px rgba(34, 211, 238, 0.55); }
+        .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -12px rgba(34,211,238,0.25), 0 0 0 1px rgba(34,211,238,0.5); border-color: rgba(34,211,238,0.6); }
+        .grid-bg {
+            background-image: linear-gradient(rgba(34,211,238,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.06) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 50%, #0891b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .pulse-dot { animation: pulseDot 2s infinite; }
+        @keyframes pulseDot { 0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.7);} 50% { box-shadow: 0 0 0 8px rgba(16,185,129,0);} }
+        .fade-in { animation: fadeIn 0.6s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px);} to { opacity: 1; transform: translateY(0);} }
+        .float-anim { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+        .nav-scrolled { background: rgba(2, 6, 23, 0.95); box-shadow: 0 4px 30px rgba(0,0,0,0.5); border-bottom: 1px solid #1e293b; }
+        .logo-gradient { background: linear-gradient(135deg, #22d3ee 0%, #0891b2 100%); }
+        .terminal-line { animation: typeIn 0.5s ease forwards; opacity: 0; }
+        @keyframes typeIn { to { opacity: 1; } }
+        .scanline {
+            background: linear-gradient(to bottom, transparent, rgba(34,211,238,0.1), transparent);
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan { 0% { transform: translateY(-100%);} 100% { transform: translateY(100%);} }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200 antialiased overflow-x-hidden">
 
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-xl logo-gradient flex items-center justify-center text-slate-950 shadow-lg glow-cyan">
+                    <i class="fa-solid fa-microchip text-xl"></i>
+                </div>
+                <div>
+                    <div class="text-white font-black text-xl tracking-tight leading-none">GARTEK</div>
+                    <div class="text-[10px] text-cyan-400 uppercase tracking-[0.2em] font-mono mt-0.5">Automação & Eletrotécnica</div>
+                </div>
+            </a>
+            <div class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+                <a href="#inicio" class="hover:text-cyan-400 transition">Início</a>
+                <a href="#sobre" class="hover:text-cyan-400 transition">A Gartek</a>
+                <a href="#solucoes" class="hover:text-cyan-400 transition">Soluções</a>
+                <a href="#diferenciais" class="hover:text-cyan-400 transition">Diferenciais</a>
+                <a href="#normas" class="hover:text-cyan-400 transition">Normas</a>
+                <a href="#contato" class="hover:text-cyan-400 transition">Contato</a>
+            </div>
+            <a href="#contato" class="hidden md:flex items-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-lg transition-all glow-cyan hover:glow-cyan-strong">
+                <i class="fa-solid fa-headset"></i> Atendimento Técnico
+            </a>
+            <button id="mobile-menu-btn" class="lg:hidden text-white p-2" aria-label="Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-800 bg-slate-950/98 px-6 py-4 flex-col gap-4 text-sm font-medium">
+            <a href="#inicio" class="hover:text-cyan-400 py-1">Início</a>
+            <a href="#sobre" class="hover:text-cyan-400 py-1">A Gartek</a>
+            <a href="#solucoes" class="hover:text-cyan-400 py-1">Soluções</a>
+            <a href="#diferenciais" class="hover:text-cyan-400 py-1">Diferenciais</a>
+            <a href="#normas" class="hover:text-cyan-400 py-1">Normas</a>
+            <a href="#contato" class="hover:text-cyan-400 py-1">Contato</a>
+            <a href="#contato" class="bg-cyan-500 text-slate-950 font-bold px-4 py-2.5 rounded-lg text-center mt-2"><i class="fa-solid fa-headset mr-2"></i>Atendimento Técnico</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-28 grid-bg overflow-hidden">
+        <div class="absolute top-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 left-10 w-80 h-80 bg-cyan-700/10 rounded-full blur-3xl"></div>
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-12 items-center relative py-12">
+            <div class="fade-in">
+                <div class="inline-flex items-center gap-2 bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 text-xs font-bold px-4 py-2 rounded-full mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+                    Engenharia Eletrotécnica Especializada
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.05] tracking-tight mb-6">
+                    Excelência em <span class="gradient-text">Prototipagem de CLPs</span>, IHMs e Painéis Elétricos
+                </h1>
+                <p class="text-slate-400 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
+                    Soluções de alta complexidade para a Indústria 4.0. Engenharia de precisão, desenvolvimento ágil de protótipos e montagem de quadros em total conformidade normativa.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-10">
+                    <a href="#contato" class="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-7 py-3.5 rounded-xl transition-all glow-cyan hover:glow-cyan-strong">
+                        <i class="fa-solid fa-file-invoice-dollar"></i> Solicitar Cotação
+                    </a>
+                    <a href="#solucoes" class="flex items-center gap-2 border-2 border-slate-700 hover:border-cyan-400 text-slate-200 hover:text-cyan-300 font-bold px-7 py-3.5 rounded-xl transition-all">
+                        <i class="fa-solid fa-arrow-right"></i> Conhecer Soluções
+                    </a>
+                </div>
+                <div class="flex flex-wrap gap-x-6 gap-y-3 text-xs font-mono text-slate-500">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> NR-10 / NR-12</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> NBR IEC 61439</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> IEC 61131-3</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> FAT / SAT</div>
+                </div>
+            </div>
+            <div class="relative fade-in">
+                <div class="rounded-2xl border border-cyan-500/30 bg-slate-900/90 backdrop-blur shadow-2xl float-anim overflow-hidden">
+                    <div class="flex items-center gap-2 px-5 py-3 border-b border-slate-800 bg-slate-950/50">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                        <span class="ml-2 text-xs text-slate-500 font-mono">gartek@diagnostic ~ terminal</span>
+                    </div>
+                    <div class="p-5 font-mono text-xs space-y-2 relative">
+                        <div class="absolute inset-0 scanline pointer-events-none"></div>
+                        <div class="text-emerald-400 terminal-line" style="animation-delay:0.1s">$ gartek --status --system all</div>
+                        <div class="text-slate-400 terminal-line" style="animation-delay:0.3s">[OK] CLP Siemens S7-1500 .......... <span class="text-emerald-400">RUNNING</span></div>
+                        <div class="text-slate-400 terminal-line" style="animation-delay:0.5s">[OK] IHM Comfort 10" ............... <span class="text-emerald-400">ONLINE</span></div>
+                        <div class="text-slate-400 terminal-line" style="animation-delay:0.7s">[OK] Ethernet/Profinet .............. <span class="text-emerald-400">12 ms</span></div>
+                        <div class="text-slate-400 terminal-line" style="animation-delay:0.9s">[OK] Teste Isolamento EMC ........... <span class="text-emerald-400">PASS</span></div>
+                        <div class="text-slate-400 terminal-line" style="animation-delay:1.1s">[OK] Documentação Técnica ........... <span class="text-cyan-400">UPLOADED</span></div>
+                        <div class="text-slate-400 terminal-line" style="animation-delay:1.3s">[OK] FAT / SAT ...................... <span class="text-emerald-400">APPROVED</span></div>
+                        <div class="text-cyan-400 terminal-line pt-2 border-t border-slate-800 mt-2" style="animation-delay:1.5s">$ gartek --ready-to-deploy <span class="animate-pulse">_</span></div>
+                    </div>
+                    <div class="px-5 py-3 border-t border-slate-800 bg-slate-950/50 flex items-center justify-between">
+                        <span class="text-[10px] font-mono text-slate-500">SISTEMA OPERACIONAL</span>
+                        <span class="text-[10px] font-mono text-emerald-400 flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span> STABLE
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÉTRICAS -->
+    <section class="py-16 bg-slate-900/50 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex items-start gap-4 reveal">
+                <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-vial-circle-check text-emerald-400 text-lg"></i>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-white mb-1">100%</div>
+                    <div class="text-xs text-slate-400 leading-tight">Testes em Bancada (FAT)</div>
+                </div>
+            </div>
+            <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex items-start gap-4 reveal">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-box-open text-cyan-400 text-lg"></i>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-white mb-1">Turnkey</div>
+                    <div class="text-xs text-slate-400 leading-tight">Sistemas prontos para operar</div>
+                </div>
+            </div>
+            <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex items-start gap-4 reveal">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-shield-halved text-amber-400 text-lg"></i>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-white mb-1">Zero</div>
+                    <div class="text-xs text-slate-400 leading-tight">Falhas no comissionamento</div>
+                </div>
+            </div>
+            <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex items-start gap-4 reveal">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-certificate text-purple-400 text-lg"></i>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-white mb-1">IEC / NR</div>
+                    <div class="text-xs text-slate-400 leading-tight">Conformidade normativa total</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <div class="inline-block text-xs uppercase tracking-[0.25em] font-mono text-cyan-400 bg-cyan-950/60 border border-cyan-700/40 px-4 py-1.5 rounded-full mb-4">A Gartek</div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight mb-6">
+                    Reputação técnica construída em <span class="gradient-text">precisão e confiabilidade</span>.
+                </h2>
+                <p class="text-slate-400 leading-relaxed mb-5">
+                    A <strong class="text-white">GARTEK</strong> consolidou sua marca na prototipagem ágil, organização de quadros e integração eletrotécnica de alta complexidade. Atuamos com engenharia de precisão e foco absoluto em resultados operacionais.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 card-hover">
+                        <i class="fa-solid fa-bolt text-cyan-400 text-lg mb-2"></i>
+                        <div class="text-white font-bold text-sm mb-1">Prototipagem Ágil</div>
+                        <div class="text-slate-500 text-xs">Ciclos rápidos com validação em bancada</div>
+                    </div>
+                    <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 card-hover">
+                        <i class="fa-solid fa-layer-group text-emerald-400 text-lg mb-2"></i>
+                        <div class="text-white font-bold text-sm mb-1">Acabamento Fabril</div>
+                        <div class="text-slate-500 text-xs">Padrão internacional de montagem</div>
+                    </div>
+                </div>
+                <div class="space-y-2.5">
+                    <div class="flex items-start gap-2.5 text-sm text-slate-300"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 flex-shrink-0"></i> <span>Contato direto com especialista técnico</span></div>
+                    <div class="flex items-start gap-2.5 text-sm text-slate-300"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 flex-shrink-0"></i> <span>Documentação completa (diagramas, mapas de E/S)</span></div>
+                    <div class="flex items-start gap-2.5 text-sm text-slate-300"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 flex-shrink-0"></i> <span>Proteção avançada contra ruídos e surtos</span></div>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4 mt-8">
+                        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 card-hover">
+                            <i class="fa-solid fa-crosshairs text-cyan-400 text-2xl mb-3"></i>
+                            <div class="text-white font-bold mb-1 text-sm">Precisão Técnica</div>
+                            <div class="text-slate-500 text-xs">Acabamento impecável em cada projeto</div>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 card-hover">
+                            <i class="fa-solid fa-wrench text-cyan-400 text-2xl mb-3"></i>
+                            <div class="text-white font-bold mb-1 text-sm">Ergonomia</div>
+                            <div class="text-slate-500 text-xs">Manutenção facilitada e testes rigorosos</div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 card-hover">
+                            <i class="fa-solid fa-user-check text-emerald-400 text-2xl mb-3"></i>
+                            <div class="text-white font-bold mb-1 text-sm">Atendimento Direto</div>
+                            <div class="text-slate-500 text-xs">Fale com o especialista técnico</div>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 card-hover">
+                            <i class="fa-solid fa-award text-amber-400 text-2xl mb-3"></i>
+                            <div class="text-white font-bold mb-1 text-sm">Confiabilidade</div>
+                            <div class="text-slate-500 text-xs">NR-10, NR-12 e NBR IEC 61439</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUÇÕES -->
+    <section id="solucoes" class="py-20 bg-slate-900/50 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="text-center mb-14 reveal">
+                <div class="inline-block text-xs uppercase tracking-[0.25em] font-mono text-cyan-400 bg-cyan-950/60 border border-cyan-700/40 px-4 py-1.5 rounded-full mb-4">Soluções</div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">Especialidades GARTEK</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Do projeto ao comissionamento, com rigor técnico e conformidade normativa em cada etapa.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-7 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-5">
+                        <i class="fa-solid fa-microchip text-cyan-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Prototipagem de CLPs</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-5">Programação multimarca em Ladder, FBD e ST (IEC 61131-3), validação em bancada, redes industriais (Profinet, Modbus, Ethernet/IP) e testes funcionais FAT/SAT.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[11px] bg-slate-800 text-cyan-300 border border-slate-700 px-2.5 py-1 rounded-full font-mono">Ladder</span>
+                        <span class="text-[11px] bg-slate-800 text-cyan-300 border border-slate-700 px-2.5 py-1 rounded-full font-mono">FBD</span>
+                        <span class="text-[11px] bg-slate-800 text-cyan-300 border border-slate-700 px-2.5 py-1 rounded-full font-mono">ST</span>
+                    </div>
+                </div>
+                <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-7 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-5">
+                        <i class="fa-solid fa-display text-cyan-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Desenvolvimento de IHMs</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-5">Telas touchscreen ergonômicas, gráficos de tendência, histórico de alarmes, receitas de operação e diagnósticos de falha em tempo real.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[11px] bg-slate-800 text-cyan-300 border border-slate-700 px-2.5 py-1 rounded-full font-mono">Profinet</span>
+                        <span class="text-[11px] bg-slate-800 text-cyan-300 border border-slate-700 px-2.5 py-1 rounded-full font-mono">Modbus</span>
+                        <span class="text-[11px] bg-slate-800 text-cyan-300 border border-slate-700 px-2.5 py-1 rounded-full font-mono">Ethernet/IP</span>
+                    </div>
+                </div>
+                <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-7 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mb-5">
+                        <i class="fa-solid fa-server text-cyan-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Engenharia e Montagem de Painéis</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-5">Painéis de Automação, Quadros de Distribuição (QDF) e Centros de Controle de Motores (CCM). Cabeamento estruturado com anilhamento padronizado.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[11px] bg-slate-800 text-cyan-300 border border-slate-700 px-2.5 py-1 rounded-full font-mono">QDF</span>
+                        <span class="text-[11px] bg-slate-800 text-cyan-300 border border-slate-700 px-2.5 py-1 rounded-full font-mono">CCM</span>
+                        <span class="text-[11px] bg-slate-800 text-cyan-300 border border-slate-700 px-2.5 py-1 rounded-full font-mono">NBR 61439</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section id="diferenciais" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="text-center mb-14 reveal">
+                <div class="inline-block text-xs uppercase tracking-[0.25em] font-mono text-cyan-400 bg-cyan-950/60 border border-cyan-700/40 px-4 py-1.5 rounded-full mb-4">Diferenciais</div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">Por que a GARTEK</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-7 reveal text-center">
+                    <div class="w-16 h-16 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto mb-5">
+                        <i class="fa-solid fa-crosshairs text-cyan-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Precisão e Estética</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Acabamento impecável e organização fabril em cada entrega.</p>
+                </div>
+                <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-7 reveal text-center">
+                    <div class="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto mb-5">
+                        <i class="fa-solid fa-shield-halved text-emerald-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Conformidade Rigorosa</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Total alinhamento com NR-10, NR-12 e NBR IEC 61439.</p>
+                </div>
+                <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-7 reveal text-center">
+                    <div class="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto mb-5">
+                        <i class="fa-solid fa-rocket text-amber-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Prototipagem Ágil</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Testes de bancada e validação de campo antes da entrega.</p>
+                </div>
+                <div class="card-hover bg-slate-900/80 border border-slate-800 rounded-2xl p-7 reveal text-center">
+                    <div class="w-16 h-16 rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center mx-auto mb-5">
+                        <i class="fa-solid fa-user-check text-purple-400 text-2xl"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Atendimento Direto</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Atendimento personalizado por especialistas técnicos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NORMAS -->
+    <section id="normas" class="py-20 bg-slate-900/50 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <div class="text-center mb-14 reveal">
+                <div class="inline-block text-xs uppercase tracking-[0.25em] font-mono text-cyan-400 bg-cyan-950/60 border border-cyan-700/40 px-4 py-1.5 rounded-full mb-4">Normas & Certificações</div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">Conformidade Total</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Projetos executados em estrita observância às normas técnicas nacionais e internacionais.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-hover bg-slate-900/80 border border-cyan-500/20 rounded-2xl p-6 reveal">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-bolt text-cyan-400"></i>
+                        </div>
+                        <div class="text-amber-400 font-black text-lg">NR-10</div>
+                    </div>
+                    <div class="text-white font-bold text-sm mb-1">Segurança em Instalações</div>
+                    <div class="text-slate-500 text-xs leading-relaxed">Instalações e serviços em eletricidade, com foco em segurança e prevenção de acidentes.</div>
+                </div>
+                <div class="card-hover bg-slate-900/80 border border-cyan-500/20 rounded-2xl p-6 reveal">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-gears text-cyan-400"></i>
+                        </div>
+                        <div class="text-amber-400 font-black text-lg">NR-12</div>
+                    </div>
+                    <div class="text-white font-bold text-sm mb-1">Segurança em Máquinas</div>
+                    <div class="text-slate-500 text-xs leading-relaxed">Adequação de máquinas e equipamentos aos padrões de segurança operacional.</div>
+                </div>
+                <div class="card-hover bg-slate-900/80 border border-cyan-500/20 rounded-2xl p-6 reveal">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-certificate text-cyan-400"></i>
+                        </div>
+                        <div class="text
