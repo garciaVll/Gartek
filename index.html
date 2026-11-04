@@ -15,7 +15,7 @@
                             cyan: '#00f3ff',
                             blue: '#0066ff',
                             dark: '#030712',
-                            card: '#0b1329',
+                            card: '#0f172a',
                             border: '#1e293b'
                         }
                     }
@@ -25,6 +25,7 @@
     </script>
     <style>
         .glow-cyan { box-shadow: 0 0 20px rgba(0, 243, 255, 0.2); }
+        .glow-cyan-hover:hover { box-shadow: 0 0 25px rgba(0, 243, 255, 0.35); }
         .tech-grid {
             background-image: radial-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px);
             background-size: 30px 30px;
@@ -46,7 +47,7 @@
                 </div>
             </a>
             
-            <!-- LINKS DE NAVEGAÇÃO DIRETA -->
+            <!-- LINKS DE NAVEGAÇÃO SUPERIOR (COM IDS CORRESPONDENTES) -->
             <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-300">
                 <a href="#inicio" class="hover:text-brand-cyan transition-colors">Início</a>
                 <a href="#sobre" class="hover:text-brand-cyan transition-colors">A Gartek</a>
@@ -92,7 +93,7 @@
                     </h1>
 
                     <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-                        A GARTEK é referência em desenvolvimento ágil de protótipos industriais, integração de sistemas de controle e montagem de quadros elétricos de alta complexidade. Rigor técnico e total conformidade com a Indústria 4.0.
+                        A GARTEK é referência em desenvolvimento ágil de protótotipos industriais, integração de sistemas de controle e montagem de quadros elétricos de alta complexidade. Rigor técnico e total conformidade com a Indústria 4.0.
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4 pt-2">
@@ -102,6 +103,13 @@
                         <a href="#servicos" class="inline-flex items-center justify-center bg-slate-900 border border-slate-700 text-slate-300 font-bold px-8 py-4 rounded-xl hover:border-brand-cyan hover:text-brand-cyan transition-all text-base">
                             <i class="fa-solid fa-cubes mr-2"></i> Conhecer Soluções
                         </a>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-800/80 flex flex-wrap gap-6 text-xs text-slate-400 font-mono">
+                        <span class="flex items-center"><i class="fa-solid fa-shield-halved text-emerald-400 mr-2"></i> NR-10 / NR-12</span>
+                        <span class="flex items-center"><i class="fa-solid fa-check-double text-brand-cyan mr-2"></i> NBR IEC 61439</span>
+                        <span class="flex items-center"><i class="fa-solid fa-code text-brand-cyan mr-2"></i> IEC 61131-3</span>
+                        <span class="flex items-center"><i class="fa-solid fa-vial text-emerald-400 mr-2"></i> FAT / SAT</span>
                     </div>
                 </div>
 
@@ -113,27 +121,66 @@
                                 <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
                                 <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
                             </div>
-                            <span class="font-mono text-xs text-brand-cyan font-bold">GARTEK_SYS_DIAGNOSTIC_v6.0</span>
+                            <span class="font-mono text-xs text-slate-400">gartek@diagnostic ~ terminal</span>
                         </div>
                         <div class="space-y-3 font-mono text-xs">
-                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center">
-                                <span class="text-slate-400">STATUS DA CPU (CLP):</span>
-                                <span class="text-emerald-400 font-bold">[OK] RUNNING</span>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/80">
+                                <span class="text-brand-cyan">$ gartek --status --system all</span>
                             </div>
-                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center">
-                                <span class="text-slate-400">INTERFACE IHM:</span>
-                                <span class="text-brand-cyan font-bold">[OK] ONLINE</span>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/80 flex justify-between items-center">
+                                <span class="text-slate-400">[OK] CLP Siemens S7-1500</span>
+                                <span class="text-emerald-400 font-bold">RUNNING</span>
                             </div>
-                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center">
-                                <span class="text-slate-400">PAINEL DE POTÊNCIA:</span>
-                                <span class="text-emerald-400 font-bold">[OK] 380V IEC</span>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/80 flex justify-between items-center">
+                                <span class="text-slate-400">[OK] IHM Comfort 10"</span>
+                                <span class="text-brand-cyan font-bold">ONLINE</span>
                             </div>
-                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex justify-between items-center">
-                                <span class="text-slate-400">TESTES FAT / SAT:</span>
-                                <span class="text-brand-cyan font-bold">[OK] APPROVED</span>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/80 flex justify-between items-center">
+                                <span class="text-slate-400">[OK] Ethernet/Profinet</span>
+                                <span class="text-brand-cyan font-bold">12 ms</span>
+                            </div>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/80 flex justify-between items-center">
+                                <span class="text-slate-400">[OK] Teste Isolamento EMC</span>
+                                <span class="text-emerald-400 font-bold">PASS</span>
+                            </div>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/80 flex justify-between items-center">
+                                <span class="text-slate-400">[OK] Documentação Técnica</span>
+                                <span class="text-brand-cyan font-bold">UPLOADED</span>
+                            </div>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-800/80 flex justify-between items-center">
+                                <span class="text-slate-400">[OK] FAT / SAT</span>
+                                <span class="text-emerald-400 font-bold">APPROVED</span>
+                            </div>
+                            <div class="pt-2 text-slate-500 text-[10px] flex justify-between">
+                                <span>SISTEMA OPERACIONAL</span>
+                                <span class="text-emerald-400">• STABLE</span>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICAS -->
+    <section class="bg-slate-900/90 border-y border-slate-800 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-3xl lg:text-4xl font-black text-brand-cyan font-mono">100%</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Testes em Bancada (FAT)</div>
+                </div>
+                <div>
+                    <div class="text-3xl lg:text-4xl font-black text-emerald-400 font-mono">Turnkey</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Sistemas Prontos p/ Operar</div>
+                </div>
+                <div>
+                    <div class="text-3xl lg:text-4xl font-black text-amber-500 font-mono">Zero</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Falhas no Comissionamento</div>
+                </div>
+                <div>
+                    <div class="text-3xl lg:text-4xl font-black text-white font-mono">IEC / NR</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mt-1">Conformidade Normativa</div>
                 </div>
             </div>
         </div>
@@ -149,11 +196,24 @@
                         Engenharia e Prototipagem com Padrão Industrial Impecável
                     </h2>
                     <p class="text-slate-400 leading-relaxed">
-                        A <strong class="text-white">GARTEK</strong> é especializada em engenharia de automação e soluções eletrotécnicas. Projetamos, desenvolvemos e montamos Painéis Eléticos, Sistemas com CLP e Interfaces Homem-Máquina (IHM) sob medida.
+                        A <strong class="text-white">GARTEK</strong> é uma empresa especializada em engenharia de automação e soluções eletrotécnicas industriais. Projetamos, desenvolvemos e montamos Painéis Elétricos, Sistemas com CLP (Controladores Lógicos Programáveis) e Interfaces Homem-Máquina (IHM) sob medida.
                     </p>
                     <p class="text-slate-400 leading-relaxed">
-                        Nossa marca se destaca pelo rigor técnico na prototipagem ágil, na organização impecável de quadros elétricos e na entrega de sistemas prontos para operação (turnkey), totalmente alinhados às normas da Indústria 4.0.
+                        Nossa marca se destaca pelo alto padrão técnico na prototipagem ágil, na organização rigorosa de quadros elétricos e na entrega de sistemas prontos para operação (turnkey), totalmente alinhados às normas vigentes da Indústria 4.0.
                     </p>
+
+                    <div class="grid sm:grid-cols-2 gap-4 pt-4">
+                        <div class="p-5 bg-slate-900 border border-slate-800 rounded-xl">
+                            <i class="fa-solid fa-vial text-brand-cyan text-2xl mb-2"></i>
+                            <h4 class="text-white font-bold text-sm">Prototipagem Ágil</h4>
+                            <p class="text-slate-400 text-xs mt-1">Validação completa da lógica e E/S antes do campo.</p>
+                        </div>
+                        <div class="p-5 bg-slate-900 border border-slate-800 rounded-xl">
+                            <i class="fa-solid fa-gears text-emerald-400 text-2xl mb-2"></i>
+                            <h4 class="text-white font-bold text-sm">Acabamento Fabril</h4>
+                            <p class="text-slate-400 text-xs mt-1">Organização impecável de canaletas, cabos e identificações.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 space-y-6">
@@ -163,15 +223,19 @@
                     <ul class="space-y-4 text-sm text-slate-300">
                         <li class="flex items-start">
                             <i class="fa-solid fa-circle-check text-brand-cyan mt-1 mr-3 text-base"></i>
-                            <span><strong class="text-white">Contato Direto com Especialista:</strong> Atendimento conduzido por técnicos qualificados em automação e eletrotécnica.</span>
+                            <span><strong class="text-white">Contato Direto com Especialista:</strong> Atendimento qualificado conduzido por técnico responsável em automação e eletrotécnica.</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa-solid fa-circle-check text-brand-cyan mt-1 mr-3 text-base"></i>
-                            <span><strong class="text-white">Documentação Completa:</strong> Entrega de diagramas elétricos, mapas de E/S do CLP e manuais operacionais.</span>
+                            <span><strong class="text-white">Documentação Completa:</strong> Entrega de diagramas elétricos, mapas de E/S do CLP e manuais operacionais da IHM.</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa-solid fa-circle-check text-brand-cyan mt-1 mr-3 text-base"></i>
                             <span><strong class="text-white">Proteção Avançada:</strong> Implementação de barramentos de terra blindados, DPS e filtros contra ruído (EMI).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-circle-check text-brand-cyan mt-1 mr-3 text-base"></i>
+                            <span><strong class="text-white">Acompanhamento e Suporte:</strong> Apoio na integração, testes de aceitação em campo e parametrização.</span>
                         </li>
                     </ul>
                 </div>
@@ -185,20 +249,25 @@
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
                 <span class="text-brand-cyan font-mono text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-sliders mr-2"></i>Nossas Especialidades</span>
                 <h2 class="text-3xl sm:text-4xl font-black text-white">Soluções Eletrotécnicas & Automação</h2>
-                <p class="text-slate-400">Desenvolvimento completo desde a especificação do protótipo até a montagem do painel final.</p>
+                <p class="text-slate-400">Desenvolvimento completo desde a especificação do protótipo até o comissionamento do painel elétrico final.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- CARD 1 -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-brand-cyan transition-all duration-300 flex flex-col justify-between">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-brand-cyan transition-all duration-300 glow-cyan-hover flex flex-col justify-between">
                     <div>
                         <div class="w-14 h-14 bg-brand-cyan/10 border border-brand-cyan/30 rounded-xl flex items-center justify-center text-brand-cyan text-2xl mb-6">
                             <i class="fa-solid fa-microchip"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-3">Prototipagem de CLPs</h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Desenvolvimento e validação em bancada de lógicas para Controladores Lógicos Programáveis. Programação estruturada em Ladder, FBD e ST (Norma IEC 61131-3).
+                            Desenvolvimento e validação em bancada de lógicas para Controladores Lógicos Programáveis. Programação estruturada em Ladder, FBD e ST (Norma IEC 61131-3) com simulação prévia de processos.
                         </p>
+                        <ul class="text-xs font-mono text-slate-300 space-y-2 border-t border-slate-800 pt-4 mb-6">
+                            <li><i class="fa-solid fa-caret-right text-brand-cyan mr-2"></i>Testes funcionais FAT/SAT</li>
+                            <li><i class="fa-solid fa-caret-right text-brand-cyan mr-2"></i>Arquiteturas modulares e compactas</li>
+                            <li><i class="fa-solid fa-caret-right text-brand-cyan mr-2"></i>Redes Profinet, Modbus, Ethernet/IP</li>
+                        </ul>
                     </div>
                     <a href="#contato" class="text-brand-cyan font-bold text-sm flex items-center hover:underline">
                         Consultar Prototipagem <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
@@ -206,15 +275,20 @@
                 </div>
 
                 <!-- CARD 2 -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-brand-cyan transition-all duration-300 flex flex-col justify-between">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-brand-cyan transition-all duration-300 glow-cyan-hover flex flex-col justify-between">
                     <div>
                         <div class="w-14 h-14 bg-brand-cyan/10 border border-brand-cyan/30 rounded-xl flex items-center justify-center text-brand-cyan text-2xl mb-6">
                             <i class="fa-solid fa-display"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-3">Desenvolvimento de IHMs</h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Criação de telas intuitivas para operação em fábrica. Visualização em tempo real de alarmes, historizadores de produção e receitas de máquina.
+                            Criação de telas intuitivas e ergonômicas para operação em chão de fábrica. Visualização em tempo real de alarmes, historizadores de produção, receitas de máquina e diagnósticos de falha.
                         </p>
+                        <ul class="text-xs font-mono text-slate-300 space-y-2 border-t border-slate-800 pt-4 mb-6">
+                            <li><i class="fa-solid fa-caret-right text-brand-cyan mr-2"></i>Interfaces Touchscreen eficientes</li>
+                            <li><i class="fa-solid fa-caret-right text-brand-cyan mr-2"></i>Gestão de alarmes & receitas</li>
+                            <li><i class="fa-solid fa-caret-right text-brand-cyan mr-2"></i>Comunicação em alta velocidade</li>
+                        </ul>
                     </div>
                     <a href="#contato" class="text-brand-cyan font-bold text-sm flex items-center hover:underline">
                         Consultar IHMs <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
@@ -222,15 +296,20 @@
                 </div>
 
                 <!-- CARD 3 -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-brand-cyan transition-all duration-300 flex flex-col justify-between">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 hover:border-brand-cyan transition-all duration-300 glow-cyan-hover flex flex-col justify-between">
                     <div>
                         <div class="w-14 h-14 bg-brand-cyan/10 border border-brand-cyan/30 rounded-xl flex items-center justify-center text-brand-cyan text-2xl mb-6">
                             <i class="fa-solid fa-bolt"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white mb-3">Montagem de Painéis Elétricos</h3>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Projetos e montagem de Quadros de Comando, CCMs e Quadros de Distribuição (QDF). Acabamento de alto nível com anilhamento padronizado.
+                            Projetos e montagem de Quadros de Comando, Centros de Controle de Motores (CCM) e Quadros de Distribuição (QDF). Acabamento de alto nível com separação física entre potência e sinal.
                         </p>
+                        <ul class="text-xs font-mono text-slate-300 space-y-2 border-t border-slate-800 pt-4 mb-6">
+                            <li><i class="fa-solid fa-caret-right text-brand-cyan mr-2"></i>Inversores, Soft-Starters & Disjuntores</li>
+                            <li><i class="fa-solid fa-caret-right text-brand-cyan mr-2"></i>Anilhamento e identificação 100%</li>
+                            <li><i class="fa-solid fa-caret-right text-brand-cyan mr-2"></i>Grau de proteção IP54 a IP65</li>
+                        </ul>
                     </div>
                     <a href="#contato" class="text-brand-cyan font-bold text-sm flex items-center hover:underline">
                         Consultar Painéis <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
@@ -247,20 +326,32 @@
                 <div class="lg:col-span-5 space-y-6">
                     <span class="text-brand-cyan font-mono text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-award mr-2"></i>Diferencial Competitivo</span>
                     <h2 class="text-3xl font-black text-white leading-tight">Por que escolher a GARTEK para o seu projeto?</h2>
-                    <p class="text-slate-400">Garantimos rigor operacional em todas as etapas, desde a especificação técnica até o teste de campo.</p>
+                    <p class="text-slate-400">Garantimos rigor operacional em todas as etapas, desde a especificação dos componentes de entrada até a fixação do último borne de saída.</p>
                 </div>
 
                 <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6">
                     <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
                         <i class="fa-solid fa-shield-cat text-brand-cyan text-3xl mb-3"></i>
                         <h4 class="text-white font-bold mb-2">Imunidade Eletromagnética</h4>
-                        <p class="text-slate-400 text-xs">Separação física entre cabos de sinal (24V) e potência.</p>
+                        <p class="text-slate-400 text-xs">Separação rigorosa das linhas de comando (24VDC) dos cabos de potência de alta amperagem.</p>
                     </div>
 
                     <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
-                        <i class="fa-solid fa-clipboard-check text-brand-cyan text-3xl mb-3"></i>
+                        <i class="fa-solid fa-clipboard-check text-emerald-400 text-3xl mb-3"></i>
                         <h4 class="text-white font-bold mb-2">Simulação & Ensaio FAT</h4>
-                        <p class="text-slate-400 text-xs">Validação de bancada com simulação de falhas antes da entrega.</p>
+                        <p class="text-slate-400 text-xs">Validação de bancada com simulação de falhas e análise do tempo de ciclo antes do envio ao cliente.</p>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                        <i class="fa-solid fa-wrench text-amber-500 text-3xl mb-3"></i>
+                        <h4 class="text-white font-bold mb-2">Ergonomia de Manutenção</h4>
+                        <p class="text-slate-400 text-xs">Painéis organizados para facilitar substituição de componentes, medições e expansões futuras.</p>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                        <i class="fa-solid fa-user-gear text-brand-cyan text-3xl mb-3"></i>
+                        <h4 class="text-white font-bold mb-2">Suporte Técnico Especializado</h4>
+                        <p class="text-slate-400 text-xs">Atendimento prestado diretamente por técnicos especialistas em automação e eletrotécnica.</p>
                     </div>
                 </div>
             </div>
@@ -272,17 +363,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="text-xl font-bold text-white uppercase tracking-wider font-mono mb-8">Conformidade e Segurança Normativa</h3>
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="p-6 bg-slate-950 border border-slate-800 rounded-xl">
+                <div class="p-6 bg-slate-950 border border-slate-800 rounded-2xl">
                     <span class="text-brand-cyan font-bold font-mono text-lg block mb-2">NR-10</span>
-                    <p class="text-slate-400 text-xs">Segurança em instalações e serviços em eletricidade.</p>
+                    <p class="text-slate-400 text-xs">Segurança em instalações e serviços em eletricidade, garantindo proteção contra arcos elétricos e acidentes.</p>
                 </div>
-                <div class="p-6 bg-slate-950 border border-slate-800 rounded-xl">
-                    <span class="text-brand-cyan font-bold font-mono text-lg block mb-2">NR-12</span>
-                    <p class="text-slate-400 text-xs">Segurança em máquinas e equipamentos com CLPs dedicados.</p>
+                <div class="p-6 bg-slate-950 border border-slate-800 rounded-2xl">
+                    <span class="text-emerald-400 font-bold font-mono text-lg block mb-2">NR-12</span>
+                    <p class="text-slate-400 text-xs">Segurança no trabalho em máquinas e equipamentos com CLPs e relés de segurança dedicados.</p>
                 </div>
-                <div class="p-6 bg-slate-950 border border-slate-800 rounded-xl">
-                    <span class="text-brand-cyan font-bold font-mono text-lg block mb-2">NBR IEC 61439</span>
-                    <p class="text-slate-400 text-xs">Norma para conjuntos de manobra e comando de baixa tensão.</p>
+                <div class="p-6 bg-slate-950 border border-slate-800 rounded-2xl">
+                    <span class="text-amber-500 font-bold font-mono text-lg block mb-2">NBR IEC 61439</span>
+                    <p class="text-slate-400 text-xs">Estandardização internacional para conjuntos de manobra e comando elétrico de baixa tensão.</p>
                 </div>
             </div>
         </div>
@@ -292,40 +383,121 @@
     <section id="contato" class="py-24 bg-slate-950 border-t border-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-12">
-                <div class="lg:col-span-5 space-y-6">
-                    <span class="text-brand-cyan font-mono text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-headset mr-2"></i>Atendimento Direto</span>
-                    <h2 class="text-3xl font-black text-white">Solicite uma Cotação Técnica</h2>
-                    <p class="text-slate-400">Fale diretamente com nossa equipe técnica para especificar seu protótipo de CLP, IHM ou painel elétrico.</p>
+                
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-brand-cyan font-mono text-xs font-bold uppercase tracking-widest"><i class="fa-solid fa-headset mr-2"></i>Atendimento Direto</span>
+                        <h2 class="text-3xl font-black text-white mt-2">Solicite uma Cotação Técnica</h2>
+                        <p class="text-slate-400 mt-4 leading-relaxed">
+                            Fale diretamente com nossa equipe técnica para especificar seu protótipo de CLP, interface IHM ou projeto de painel elétrico.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6 text-sm text-slate-300">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-slate-900 border border-slate-800 rounded-xl text-brand-cyan text-xl">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold">WhatsApp / Telefone</h5>
+                                <p class="text-slate-400">(00) 99999-9999</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-slate-900 border border-slate-800 rounded-xl text-brand-cyan text-xl">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold">E-mail Corporativo</h5>
+                                <p class="text-slate-400">contato@gartek.com.br</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-slate-900 border border-slate-800 rounded-xl text-brand-cyan text-xl">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold">Localização</h5>
+                                <p class="text-slate-400">Polo Industrial / Atendimento Nacional</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="lg:col-span-7">
-                    <form class="bg-slate-900 border border-slate-800 p-8 rounded-2xl space-y-6">
+                    <form class="bg-slate-900 border border-slate-800 p-8 rounded-2xl space-y-6 glow-cyan">
+                        <h3 class="text-xl font-bold text-white border-b border-slate-800 pb-4">Formulário de Projeto</h3>
+                        
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Nome</label>
-                                <input type="text" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan" placeholder="Seu nome" required>
+                                <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Nome Completo</label>
+                                <input type="text" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="Seu nome" required>
                             </div>
                             <div>
-                                <label class="block text-xs font-mono text-slate-400 uppercase mb-2">E-mail</label>
-                                <input type="email" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan" placeholder="seuemail@empresa.com" required>
+                                <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Empresa</label>
+                                <input type="text" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="Nome da sua empresa">
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Mensagem</label>
-                            <textarea rows="4" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan" placeholder="Descreva a sua necessidade..."></textarea>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 uppercase mb-2">E-mail</label>
+                                <input type="email" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="seuemail@empresa.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Telefone / WhatsApp</label>
+                                <input type="tel" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="(00) 00000-0000" required>
+                            </div>
                         </div>
-                        <button type="button" class="w-full bg-brand-cyan text-slate-950 font-black py-4 rounded-xl hover:bg-cyan-300 transition-all glow-cyan uppercase text-sm">
-                            Enviar Solicitação Técnica
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Categoria do Projeto</label>
+                            <select class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-300 focus:outline-none focus:border-brand-cyan transition-colors">
+                                <option>Prototipagem de CLP e Lógica de Controle</option>
+                                <option>Desenvolvimento de Interface IHM</option>
+                                <option>Montagem de Painel Elétrico / CCM / QDF</option>
+                                <option>Projeto Turnkey Completo (CLP + IHM + Painel)</option>
+                                <option>Outros Serviços Eletrotécnicos</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-400 uppercase mb-2">Descrição Resumida da Necessidade</label>
+                            <textarea rows="4" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" placeholder="Descreva os requisitos do sistema, quantidade de pontos de E/S ou especificações do painel..."></textarea>
+                        </div>
+
+                        <button type="button" class="w-full bg-brand-cyan text-slate-950 font-black py-4 rounded-xl hover:bg-cyan-300 transition-all glow-cyan uppercase tracking-wider text-sm">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Enviar Solicitação para Avaliação Técnica
                         </button>
                     </form>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-950 border-t border-slate-900 py-8 text-center text-xs text-slate-600">
-        <p>&copy; 2026 GARTEK. Todos os direitos reservados.</p>
+    <footer class="bg-slate-950 border-t border-slate-900 py-12 text-slate-500 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-solid fa-microchip text-brand-cyan text-xl"></i>
+                    <span class="text-white font-bold text-sm tracking-wider">GARTEK</span>
+                    <span class="text-slate-600">|</span>
+                    <span>Automação & Eletrotécnica</span>
+                </div>
+                
+                <p>&copy; 2026 GARTEK. Todos os direitos reservados. Projetos em conformidade com NR-10, NR-12 e IEC 61439.</p>
+
+                <div class="flex space-x-4 text-slate-400 text-base">
+                    <a href="#" class="hover:text-brand-cyan"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-brand-cyan"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-brand-cyan"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -338,6 +510,3 @@
     </script>
 </body>
 </html>
-                            <i class="fa-solid fa-certificate text-cyan-400"></i>
-                        </div>
-                        <div class="text
